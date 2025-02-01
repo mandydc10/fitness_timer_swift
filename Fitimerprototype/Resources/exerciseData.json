@@ -1,0 +1,14 @@
+//
+//  ExerciseData.json
+//  Fitimerprototype
+//
+//  Created by Amanda Cook on 27/1/2025.
+//
+
+[
+    {
+        "id": 1001,
+        "name": "Situps",
+        "duration": 180000,
+        "imageName": "situp"
+    },

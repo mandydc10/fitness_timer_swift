@@ -7,18 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881C74E42D4DED1F00318D2F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C74E32D4DED1F00318D2F /* DataController.swift */; };
 		88294F172D06EA9900DED23F /* FitimerprototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88294F162D06EA9900DED23F /* FitimerprototypeApp.swift */; };
 		88294F192D06EA9900DED23F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88294F182D06EA9900DED23F /* ContentView.swift */; };
 		88294F1B2D06EA9A00DED23F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88294F1A2D06EA9A00DED23F /* Assets.xcassets */; };
 		88294F1E2D06EA9A00DED23F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88294F1D2D06EA9A00DED23F /* Preview Assets.xcassets */; };
+		88294F262D09AB3A00DED23F /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 88294F252D09AB3A00DED23F /* YouTubeiOSPlayerHelper */; };
+		882DE9822D48ADA9001A6E5C /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE9812D48ADA9001A6E5C /* PersistenceController.swift */; };
+		882DE9862D48B1DD001A6E5C /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE9852D48B1DD001A6E5C /* AddExerciseView.swift */; };
+		882DE9892D48B399001A6E5C /* TimeFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE9882D48B399001A6E5C /* TimeFormatting.swift */; };
+		882DE98B2D4A1D73001A6E5C /* EditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE98A2D4A1D73001A6E5C /* EditExerciseView.swift */; };
+		882DE98D2D4A2AFF001A6E5C /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE98C2D4A2AFF001A6E5C /* WorkoutDetailView.swift */; };
+		882DE9932D4A45DF001A6E5C /* ExerciseWorkoutModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 882DE97E2D48A24B001A6E5C /* ExerciseWorkoutModel.xcdatamodeld */; };
+		882DE99F2D4A6C99001A6E5C /* EditWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882DE99E2D4A6C99001A6E5C /* EditWorkoutView.swift */; };
+		886098932D47536D00FB29FC /* exerciseData.json in Resources */ = {isa = PBXBuildFile; fileRef = 886098922D47536D00FB29FC /* exerciseData.json */; };
+		8882B1A92D4E140300A87781 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1A52D4E140300A87781 /* Workout+CoreDataClass.swift */; };
+		8882B1AA2D4E140300A87781 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1A62D4E140300A87781 /* Workout+CoreDataProperties.swift */; };
+		8882B1AB2D4E140300A87781 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1A72D4E140300A87781 /* Exercise+CoreDataClass.swift */; };
+		8882B1AC2D4E140300A87781 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1A82D4E140300A87781 /* Exercise+CoreDataProperties.swift */; };
+		889521852D4787D600134C48 /* ExerciseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889521842D4787D600134C48 /* ExerciseRow.swift */; };
+		889521872D489C4100134C48 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889521862D489C4100134C48 /* TimerView.swift */; };
+		88B87EDC2D4BC94300C84D43 /* Content-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B87EDB2D4BC94300C84D43 /* Content-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		881C74E32D4DED1F00318D2F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		88294F132D06EA9900DED23F /* Fitimerprototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitimerprototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88294F162D06EA9900DED23F /* FitimerprototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitimerprototypeApp.swift; sourceTree = "<group>"; };
 		88294F182D06EA9900DED23F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88294F1A2D06EA9A00DED23F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88294F1D2D06EA9A00DED23F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		882DE97F2D48A24B001A6E5C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		882DE9812D48ADA9001A6E5C /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		882DE9852D48B1DD001A6E5C /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
+		882DE9882D48B399001A6E5C /* TimeFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatting.swift; sourceTree = "<group>"; };
+		882DE98A2D4A1D73001A6E5C /* EditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseView.swift; sourceTree = "<group>"; };
+		882DE98C2D4A2AFF001A6E5C /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
+		882DE99E2D4A6C99001A6E5C /* EditWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutView.swift; sourceTree = "<group>"; };
+		886098922D47536D00FB29FC /* exerciseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exerciseData.json; sourceTree = "<group>"; };
+		8882B1A52D4E140300A87781 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8882B1A62D4E140300A87781 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8882B1A72D4E140300A87781 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8882B1A82D4E140300A87781 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		889521842D4787D600134C48 /* ExerciseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRow.swift; sourceTree = "<group>"; };
+		889521862D489C4100134C48 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		88B87EDB2D4BC94300C84D43 /* Content-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88294F262D09AB3A00DED23F /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				88294F162D06EA9900DED23F /* FitimerprototypeApp.swift */,
-				88294F182D06EA9900DED23F /* ContentView.swift */,
+				882DE9872D48B376001A6E5C /* Helpers */,
+				889521822D47875E00134C48 /* Views */,
+				889521832D47876400134C48 /* Model */,
+				889521812D47874100134C48 /* Resources */,
 				88294F1A2D06EA9A00DED23F /* Assets.xcassets */,
 				88294F1C2D06EA9A00DED23F /* Preview Content */,
 			);
@@ -65,6 +102,51 @@
 				88294F1D2D06EA9A00DED23F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		882DE9872D48B376001A6E5C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				882DE9882D48B399001A6E5C /* TimeFormatting.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		889521812D47874100134C48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				886098922D47536D00FB29FC /* exerciseData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		889521822D47875E00134C48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88294F182D06EA9900DED23F /* ContentView.swift */,
+				882DE99E2D4A6C99001A6E5C /* EditWorkoutView.swift */,
+				882DE98C2D4A2AFF001A6E5C /* WorkoutDetailView.swift */,
+				882DE9852D48B1DD001A6E5C /* AddExerciseView.swift */,
+				882DE98A2D4A1D73001A6E5C /* EditExerciseView.swift */,
+				889521862D489C4100134C48 /* TimerView.swift */,
+				889521842D4787D600134C48 /* ExerciseRow.swift */,
+				88B87EDB2D4BC94300C84D43 /* Content-ViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		889521832D47876400134C48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8882B1A52D4E140300A87781 /* Workout+CoreDataClass.swift */,
+				8882B1A62D4E140300A87781 /* Workout+CoreDataProperties.swift */,
+				8882B1A72D4E140300A87781 /* Exercise+CoreDataClass.swift */,
+				8882B1A82D4E140300A87781 /* Exercise+CoreDataProperties.swift */,
+				882DE97E2D48A24B001A6E5C /* ExerciseWorkoutModel.xcdatamodeld */,
+				882DE9812D48ADA9001A6E5C /* PersistenceController.swift */,
+				881C74E32D4DED1F00318D2F /* DataController.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +165,9 @@
 			dependencies = (
 			);
 			name = Fitimerprototype;
+			packageProductDependencies = (
+				88294F252D09AB3A00DED23F /* YouTubeiOSPlayerHelper */,
+			);
 			productName = Fitimerprototype;
 			productReference = 88294F132D06EA9900DED23F /* Fitimerprototype.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +196,9 @@
 				Base,
 			);
 			mainGroup = 88294F0A2D06EA9900DED23F;
+			packageReferences = (
+				88294F242D09AB3900DED23F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+			);
 			productRefGroup = 88294F142D06EA9900DED23F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886098932D47536D00FB29FC /* exerciseData.json in Resources */,
 				88294F1E2D06EA9A00DED23F /* Preview Assets.xcassets in Resources */,
 				88294F1B2D06EA9A00DED23F /* Assets.xcassets in Resources */,
 			);
@@ -137,7 +226,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889521872D489C4100134C48 /* TimerView.swift in Sources */,
+				882DE98B2D4A1D73001A6E5C /* EditExerciseView.swift in Sources */,
+				8882B1AC2D4E140300A87781 /* Exercise+CoreDataProperties.swift in Sources */,
+				882DE98D2D4A2AFF001A6E5C /* WorkoutDetailView.swift in Sources */,
+				8882B1AB2D4E140300A87781 /* Exercise+CoreDataClass.swift in Sources */,
+				88B87EDC2D4BC94300C84D43 /* Content-ViewModel.swift in Sources */,
+				882DE9892D48B399001A6E5C /* TimeFormatting.swift in Sources */,
+				889521852D4787D600134C48 /* ExerciseRow.swift in Sources */,
+				8882B1AA2D4E140300A87781 /* Workout+CoreDataProperties.swift in Sources */,
+				882DE9932D4A45DF001A6E5C /* ExerciseWorkoutModel.xcdatamodeld in Sources */,
+				8882B1A92D4E140300A87781 /* Workout+CoreDataClass.swift in Sources */,
 				88294F192D06EA9900DED23F /* ContentView.swift in Sources */,
+				881C74E42D4DED1F00318D2F /* DataController.swift in Sources */,
+				882DE99F2D4A6C99001A6E5C /* EditWorkoutView.swift in Sources */,
+				882DE9862D48B1DD001A6E5C /* AddExerciseView.swift in Sources */,
+				882DE9822D48ADA9001A6E5C /* PersistenceController.swift in Sources */,
 				88294F172D06EA9900DED23F /* FitimerprototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +443,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88294F242D09AB3900DED23F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88294F252D09AB3A00DED23F /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88294F242D09AB3900DED23F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		882DE97E2D48A24B001A6E5C /* ExerciseWorkoutModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				882DE97F2D48A24B001A6E5C /* Model.xcdatamodel */,
+			);
+			currentVersion = 882DE97F2D48A24B001A6E5C /* Model.xcdatamodel */;
+			path = ExerciseWorkoutModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 88294F0B2D06EA9900DED23F /* Project object */;
 }
