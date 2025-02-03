@@ -11,7 +11,9 @@ struct TimerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
-    var workout: FetchedResults<Workout>.Element
+    var workout: FetchedResults<Workout>.Element?
+    
+//    @StateObject private var exerciseArray: Array<Exercise> = []
     
     @StateObject private var vm = ViewModel()
     
@@ -49,7 +51,7 @@ struct TimerView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
                     .fill(
@@ -57,8 +59,9 @@ struct TimerView: View {
                                         Gradient(colors: [Color.teal, Color.black.opacity(0.9)]), startPoint:.topLeading, endPoint: .bottomTrailing))
                     .ignoresSafeArea()
                 VStack {
-                    Text(workout.wrappedWorkoutName)
-                        .font(.largeTitle)
+//                    Text((workout?.wrappedWorkoutName ?? vm.workoutName)!)
+//                        .font(.largeTitle)
+//                        .bold()
                     HStack {
                         VStack{
                             Text("00:00:00")
@@ -82,7 +85,7 @@ struct TimerView: View {
                         .foregroundColor(.white)
                         .italic()
                     Spacer()
-                    Text(exerciseTitle)
+                    Text(workout?.exerciseArray[0].wrappedName ?? vm.exerciseName)
                         .font(.largeTitle)
                         .fontWeight(.semibold)
                     Spacer()
@@ -96,7 +99,8 @@ struct TimerView: View {
                         Spacer()
 //                        Text("00:00:00")
 //                            .font(.largeTitle)
-                        Text("\(vm.time)")
+//                        Text("\(vm.time)")
+                        Text("\(formatMinSecString(durationMS: (workout?.exerciseArray[0].duration)!))")
                             .font(.system(size: 90, weight: .medium, design: .rounded))
                             .padding()
                             .alert("Timer done!", isPresented: $vm.showingAlert) {
@@ -149,8 +153,33 @@ struct TimerView: View {
             vm.updateCountdown()
 //            updateTimeRemaining()
         }
+        .navigationTitle((workout?.wrappedWorkoutName ?? vm.workoutName)!)
     }
 
+}
+
+struct TimerView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewContext = PersistenceController.preview.container.viewContext
+        let newWorkout = Workout(context: viewContext)
+        newWorkout.workout_name = "Upper Body"
+        newWorkout.workout_id = UUID()
+        newWorkout.total_duration = 0
+        
+        let newExercise1 = Exercise(context: viewContext)
+        newExercise1.name = "Pull ups"
+        newExercise1.id = UUID()
+        newExercise1.duration = 60000
+        
+        newWorkout.addToExercises(newExercise1)
+        
+//        ForEach(newWorkout.exerciseArray) { exercise in
+//            newWorkout.total_duration = exercise.duration
+//        }
+
+        return TimerView(workout: newWorkout)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }
 
 //struct TimerView_Previews: PreviewProvider {

@@ -14,81 +14,94 @@ struct WorkoutDetailView: View {
     @Environment(\.dismiss) var dismiss
     
     @StateObject var workout: Workout
-    @State private var showingAddView = false
+    @State private var showAddView = false
     
 //    var workout: FetchedResults<Workout>.Element
-//    print(workout.exerciseArray)
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var exercise: FetchedResults<Exercise>
     
     var body: some View {
-        TabView {
-            NavigationView {
+            NavigationStack {
                 VStack(alignment: .leading) {
                     Text("\(totalDuration()) total duration")
                         .foregroundColor(.gray)
                         .padding(.horizontal)
+                    
+                    NavigationLink(destination: TimerView(workout: workout)) {
+//                        Text("Start workout")
+//                            .font(.title)
+                        Image(systemName: "play.circle.fill")
+                            .font(.system(size: 80, weight: .medium, design: .rounded))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
+                    
+                    
+                    Button("Add New Exercise") {
+                        // Toggle AddExerciseView bool to initiate sheet popup
+                        showAddView.toggle()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(20)
+                    
                     List {
                         ForEach(workout.exerciseArray) { exercise in
                             NavigationLink(destination: EditExerciseView(exercise: exercise)) {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Spacer()
                                         Text(exercise.wrappedName)
                                             .bold()
-                                        Spacer()
                                         Text("\(formatMinSecString(durationMS: exercise.duration))")
                                             .foregroundColor(.gray)
-                                        Spacer()
                                     }
                                 }
                             }
+                            
                         }
                         .onDelete(perform: deleteExercise)
+                        
+                        
                     }
                     .listStyle(.plain)
+                    
                     Spacer()
-                    NavigationLink(destination: TimerView(workout: workout)) {
-                        Text("Start workout")
-                            .font(.title)
-                        Image(systemName: "play.fill")
-                            .font(.title)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(EdgeInsets(top: 1, leading: 0, bottom: 10, trailing: 40))
+                    
+                    
                 }
-                .navigationTitle(workout.wrappedWorkoutName)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            showingAddView.toggle()
-                        } label: {
-                            Label("Add exercise", systemImage: "plus.circle")
-                        }
-                    }
-                    //                        ToolbarItem(placement: .navigationBarLeading) {
-                    //                            NavigationLink(destination: EditWorkoutView(workout: workout)) {
-                    //                                Text("Edit)")
-                    //                            }
-                    //                        }
-                }
-                .sheet(isPresented: $showingAddView) {
+//                .navigationTitle(workout.wrappedWorkoutName)
+                
+                .sheet(isPresented: $showAddView) {
                     AddExerciseView(workout: workout)
                 }
+                
             }
-            .navigationViewStyle(.stack)
-            //            }
+            .navigationTitle(workout.wrappedWorkoutName)
+            .toolbar {
+//                    ToolbarItem(placement: .navigationBar ) {
+//                        Button {
+//                            // TODO
+////                            showingAddView.toggle()
+//                        } label: {
+//                            Label("Profile", systemImage: "person.crop.circle")
+//                        }
+//                    }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: EditWorkoutNameView(workout: workout)) {
+                        Text("Edit")
+                    }
+                }
+            }
         }
-    }
     
     private func deleteExercise(offsets:IndexSet) {
-//        withAnimation {
-//            offsets.map { exercise[$0] }
-//                .forEach(viewContext.delete)
+        withAnimation {
+            offsets.map { exercise[$0] }
+                .forEach(viewContext.delete)
             
-            // Saves to our database
-//            viewContext.saveContext()
-//        }
+//          Saves to our database
+            PersistenceController.shared.saveContext()
+        }
     }
     
     private func totalDuration() -> String {
@@ -100,7 +113,7 @@ struct WorkoutDetailView: View {
             totalTime += item.duration
         }
         
-        let formattedTime = formatFullTimeString(durationMS: totalTime)
+        let formattedTime = formatMinSecHrString(durationMS: totalTime)
 
         print("Total workout time: \(formattedTime)")
         return formattedTime
@@ -116,8 +129,15 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         
         let exercise1 = Exercise(context: viewContext)
         exercise1.name = "Jogging"
+        exercise1.id = UUID()
+        exercise1.duration = 20000
+        let exercise2 = Exercise(context: viewContext)
+        exercise2.name = "Skipping"
+        exercise2.id = UUID()
+        exercise2.duration = 120000
         
         newWorkout.addToExercises(exercise1)
+        newWorkout.addToExercises(exercise2)
         
         return WorkoutDetailView(workout: newWorkout).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 //        SingleWorkoutView(workout: workout)

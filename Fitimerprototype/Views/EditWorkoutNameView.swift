@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditWorkoutView: View {
+struct EditWorkoutNameView: View {
 //    @Environment(\.managedObjectContext) private var managedObjContext
     @StateObject var workout: Workout
     @Environment(\.dismiss) var dismiss
@@ -58,14 +58,14 @@ struct EditWorkoutView: View {
     }
 }
 
-struct EditWorkoutView_Previews: PreviewProvider {
+struct EditWorkoutNameView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = PersistenceController.preview.container.viewContext
         let newWorkout = Workout(context: viewContext)
         newWorkout.workout_name = "Warm up"
         newWorkout.workout_id = UUID()
         
-        return EditWorkoutView(workout: newWorkout)
+        return EditWorkoutNameView(workout: newWorkout)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

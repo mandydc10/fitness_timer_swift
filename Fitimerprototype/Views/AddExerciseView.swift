@@ -49,6 +49,11 @@ struct AddExerciseView: View {
                                 duration: duration,
                                 workout: workout,
                                 context: managedObjectContext)
+                            DataController().editWorkout(
+                                workout: workout,
+                                name: workout.wrappedWorkoutName,
+                                duration: workout.total_duration + duration,
+                                context: managedObjectContext)
                             dismiss()
                         }
                         Spacer()
@@ -66,12 +71,23 @@ struct AddExerciseView: View {
                 }
             }
         }
-        
     }
     
     private func calculateDuration(durationMins: Double, durationSecs: Double) -> Double {
         duration = calcTimeInMS(durationMins: durationMins, durationSecs: durationSecs)
         return duration
+    }
+}
+
+struct AddExerciseView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewContext = PersistenceController.preview.container.viewContext
+        let newWorkout = Workout(context: viewContext)
+        newWorkout.workout_name = "Upper Body"
+        newWorkout.workout_id = UUID()
+
+        return AddExerciseView(workout: newWorkout)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

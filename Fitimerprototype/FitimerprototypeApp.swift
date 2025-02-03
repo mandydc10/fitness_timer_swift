@@ -14,7 +14,7 @@ struct FitimerprototypeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.viewContext)
         }.onChange(of: scenePhase) { _ in
             persistenceController.saveContext()
