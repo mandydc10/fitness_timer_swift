@@ -20,11 +20,12 @@ struct EditExerciseView: View {
     @State private var duration: Double = 0
     
     var body: some View {
+        // TODO: Consider bringing exercise current duration into slider values as initial values
         
         NavigationView {
             Form {
                 Section() {
-                    Text("Unknown Workout Name")
+                    Text("\(exercise.wrappedExerciseWorkoutName)")
                     TextField("\(exercise.name ?? "")", text: $name)
                         .onAppear {
                             name = exercise.name!
@@ -46,7 +47,11 @@ struct EditExerciseView: View {
                     HStack {
                         Spacer()
                         Button("Save") {
-                            DataController().editExercise(exercise: exercise, name: name, duration: duration, context: managedObjContext)
+                            DataController().editExercise(
+                                exercise: exercise,
+                                name: name,
+                                duration: duration,
+                                context: managedObjContext)
                             dismiss()
                         }
                         Spacer()

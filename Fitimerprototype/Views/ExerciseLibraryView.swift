@@ -12,8 +12,10 @@ struct ExerciseLibraryView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var exercise: FetchedResults<Exercise>
     
-    @State private var showingAddAlert = false
+//    @State private var showingAddAlert = false
     @State private var exerciseName: String = ""
+    
+    @State private var showAddView = false
     
     var body: some View {
         NavigationView {
@@ -40,15 +42,15 @@ struct ExerciseLibraryView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        showingAddAlert.toggle()
+                        showAddView.toggle()
                     } label: {
                         Label("Add exercise", systemImage: "plus.circle")
                     }
-                    .alert("New Exercise", isPresented: $showingAddAlert) {
-                        TextField("Enter exercise name", text: $exerciseName)
-                        Button("Add Exercise", action: addExercise)
-                        Button("Cancel", role: .cancel) { }
-                    }
+//                    .alert("New Exercise", isPresented: $showingAddAlert) {
+//                        TextField("Enter exercise name", text: $exerciseName)
+//                        Button("Add Exercise", action: addExercise)
+//                        Button("Cancel", role: .cancel) { }
+//                    }
 //                    message: {
 //                            Text("Add workout name")
 //                        }
@@ -57,6 +59,9 @@ struct ExerciseLibraryView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+            }
+            .sheet(isPresented: $showAddView) { AddExerciseView()
+//                    .presentationDetents([.fraction(0.7)])
             }
         }
     }

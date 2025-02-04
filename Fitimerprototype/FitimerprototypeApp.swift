@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct FitimerprototypeApp: App {
     @Environment(\.scenePhase) var scenePhase // allows for saving data when app goes into the background, requires added .onChange from line 19
+    
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environment(\.managedObjectContext, persistenceController.viewContext)
+                .environmentObject(WorkoutTimer())
         }.onChange(of: scenePhase) { _ in
             persistenceController.saveContext()
         }

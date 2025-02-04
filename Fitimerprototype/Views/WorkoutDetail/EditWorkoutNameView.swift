@@ -69,9 +69,3 @@ struct EditWorkoutNameView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
-
-//struct EditWorkoutView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditWorkoutView()
-//    }
-//}

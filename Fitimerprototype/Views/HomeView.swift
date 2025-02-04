@@ -29,7 +29,7 @@ struct HomeView: View {
                     ExerciseLibraryView()
             }
             else if selectedTab == .timer {
-                QuickTimerView(remainingSecs: 00, remainingMins: 00)
+                QuickTimerView()
             }
             
             CustomTabBar(selectedTab: $selectedTab)

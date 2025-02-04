@@ -12,7 +12,7 @@ struct AddExerciseView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
-    var workout: FetchedResults<Workout>.Element
+    var workout: FetchedResults<Workout>.Element?
     
     @State private var name = ""
     @State private var durationMins: Double = 0
@@ -21,21 +21,30 @@ struct AddExerciseView: View {
     
     
     var body: some View {
+        // TODO: Fix 'add exercise' for non workout option i.e. exercise library addition
         NavigationView {
             Form {
                 Section() {
-                    Text("\(workout.wrappedWorkoutName)")
+                    Text("\(workout?.wrappedWorkoutName ?? "Exercise Library")")
                     TextField("Exercise name", text: $name)
                     
                     VStack {
-                        Text("Duration")
+//                        Text("Duration")
+//                            .font(.title)
+//                            .bold()
+//                            .padding()
+//                        Text("Seconds: \(Int(durationSecs))")
+//                        Slider(value: $durationSecs, in: 0...59, step: 5)
+//                        Text("Minutes: \(Int(durationMins))")
+//                        Slider(value: $durationMins, in: 0...59, step: 1)
+                        Text("Timer: \(String(format: "%02d:%02d", Int(durationMins), Int(durationSecs)))")
                             .font(.title)
                             .bold()
                             .padding()
-                        Text("Seconds: \(Int(durationSecs))")
+                        Text("Seconds")
                         Slider(value: $durationSecs, in: 0...59, step: 5)
-                        Text("Minutes: \(Int(durationMins))")
-                        Slider(value: $durationMins, in: 0...59, step: 1)
+                        Text("Minutes")
+                        Slider(value: $durationMins, in: 0...30, step: 1)
                     }
                     .padding()
                     
@@ -47,13 +56,16 @@ struct AddExerciseView: View {
                             DataController().addExercise(
                                 name: name,
                                 duration: duration,
-                                workout: workout,
+                                workout: ((workout ?? workout?.wrappedExerciseLibrary)!),
                                 context: managedObjectContext)
-                            DataController().editWorkout(
-                                workout: workout,
-                                name: workout.wrappedWorkoutName,
-                                duration: workout.total_duration + duration,
+                            
+                            if workout != nil {
+                                DataController().editWorkout(
+                                    workout: workout!,
+                                    name: workout!.wrappedWorkoutName,
+                                    duration: workout!.total_duration + duration,
                                 context: managedObjectContext)
+                            }
                             dismiss()
                         }
                         Spacer()

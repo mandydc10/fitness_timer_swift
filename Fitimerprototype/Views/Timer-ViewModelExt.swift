@@ -8,12 +8,13 @@
 import Foundation
 
 extension TimerView {
+    
     final class ViewModel: ObservableObject {
         @Published var workoutName = "Quick start"
         @Published var exerciseName = "Custom timer"
         @Published var isActive = false
         @Published var showingAlert = false
-        @Published var time: String = "5:00"
+        @Published var time: String = "00:00"
         @Published var minutes: Float = 5.0 {
             didSet {
                 self.time = "\(Int(minutes)):00"

@@ -16,4 +16,8 @@ public class Exercise: NSManagedObject {
         name ?? "Unknown exercise"
     }
     
+    public var wrappedExerciseWorkoutName: String {
+        workout?.workout_name ?? "Template exercise"
+    }
+    
 }

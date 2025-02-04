@@ -13,28 +13,49 @@ struct WorkoutDetailView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var workout: Workout
-    @State private var showAddView = false
+    @EnvironmentObject var workoutTimer: WorkoutTimer
     
-//    var workout: FetchedResults<Workout>.Element
+    @StateObject var workout: Workout
+    //    var workout: FetchedResults<Workout>.Element
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var exercise: FetchedResults<Exercise>
+    
+//    @State var currentExercise: Exercise = workout.exerciseArray[0]
+    
+    @State private var showAddView = false
+    @State private var showTimerView = false
+    
+//    var currentExercise: Exercise = Exercise()
+    
+//    init() {
+//        print("Initialising")
+//        setTimerToWorkout()
+//        print("TimerWorkoutSet with \(workoutTimer.totalDurationMS)")
+//    }
     
     var body: some View {
             NavigationStack {
                 VStack(alignment: .leading) {
-                    Text("\(totalDuration()) total duration")
+                    Text("\(totalDurationToString(totalWorkoutDurationMS: totalDurationMS())) total duration")
                         .foregroundColor(.gray)
                         .padding(.horizontal)
                     
-                    NavigationLink(destination: TimerView(workout: workout)) {
-//                        Text("Start workout")
-//                            .font(.title)
+                    Button {
+                        print("workout play button pressed")
+                        setTimerToWorkout()
+                        showTimerView.toggle()
+                    } label: {
                         Image(systemName: "play.circle.fill")
                             .font(.system(size: 80, weight: .medium, design: .rounded))
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
+//                    NavigationLink(destination: TimerView(workout: workout)) {
+//                        Image(systemName: "play.circle.fill")
+//                            .font(.system(size: 80, weight: .medium, design: .rounded))
+//                    }
+//                    .frame(maxWidth: .infinity, alignment: .center)
+//                    .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
                     
                     
                     Button("Add New Exercise") {
@@ -57,22 +78,25 @@ struct WorkoutDetailView: View {
                                     }
                                 }
                             }
-                            
                         }
                         .onDelete(perform: deleteExercise)
                         
                         
+                        
                     }
                     .listStyle(.plain)
+                    
                     
                     Spacer()
                     
                     
                 }
 //                .navigationTitle(workout.wrappedWorkoutName)
-                
                 .sheet(isPresented: $showAddView) {
                     AddExerciseView(workout: workout)
+                }
+                .sheet(isPresented: $showTimerView) {
+                    TimerView()
                 }
                 
             }
@@ -102,23 +126,55 @@ struct WorkoutDetailView: View {
 //          Saves to our database
             PersistenceController.shared.saveContext()
         }
+        
     }
     
-    private func totalDuration() -> String {
-        var totalTime : Double = 0
+    private func totalDurationMS() -> Double {
+        var totalTimeMS : Double = 0
         
         
         for item in workout.exerciseArray {
             print(item)
-            totalTime += item.duration
+            totalTimeMS += item.duration
         }
-        
-        let formattedTime = formatMinSecHrString(durationMS: totalTime)
 
-        print("Total workout time: \(formattedTime)")
+        print("Total workout time in MS: \(totalTimeMS)")
+        return totalTimeMS
+    }
+    
+    private func totalDurationToString(totalWorkoutDurationMS: Double) -> String {
+        
+        let formattedTime = formatMinSecHrString(durationMS: totalWorkoutDurationMS)
+
+        print("Total workout time formatted: \(formattedTime)")
         return formattedTime
     }
+    
+    private func setTimerToWorkout() {
+        
+        print("set timer to workout function started")
+        let fullDuration = totalDurationMS()
+        workoutTimer.totalDurationMS = fullDuration
+        workoutTimer.totalRemainingMS = fullDuration
+        print("first run complete")
+        let timeComponents = convertMStoTime(durationMS: fullDuration)
+        workoutTimer.workoutRemainingSecsAsInt = timeComponents[2]
+        workoutTimer.workoutRemainingMinsAsInt = timeComponents[1]
+        workoutTimer.workoutInitialSecs = Double(timeComponents[2])
+        workoutTimer.workoutInitialMins = Double(timeComponents[1])
+        workoutTimer.exerciseArray = workout.exerciseArray
+        workoutTimer.currentExerciseIndex = 0
+        print("second run complete")
+
+//        workoutTimer.currentExerciseDurationMS = 0
+        
+        
+        print("workout timer duration now = \(workoutTimer.totalDurationMS)")
+        
+        
+    }
 }
+
     
 struct WorkoutDetailView_Previews: PreviewProvider {
     static var previews: some View {
@@ -139,8 +195,9 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         newWorkout.addToExercises(exercise1)
         newWorkout.addToExercises(exercise2)
         
-        return WorkoutDetailView(workout: newWorkout).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//        SingleWorkoutView(workout: workout)
+        return WorkoutDetailView(workout: newWorkout)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(WorkoutTimer())
     }
 }
 

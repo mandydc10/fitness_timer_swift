@@ -24,6 +24,13 @@ public class Workout: NSManagedObject {
         return quickWorkout
     }
     
+    public var wrappedExerciseLibrary: Workout {
+        let exerciseLibrary = Workout()
+        exerciseLibrary.workout_name = "Exercise Library"
+        
+        return exerciseLibrary
+    }
+    
         // Allow for forEach looping on NSSet
     public var exerciseArray: [Exercise] {
         let set = exercises as? Set<Exercise> ?? []

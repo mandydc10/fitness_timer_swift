@@ -29,12 +29,12 @@ func convertMStoTime(durationMS: Double) -> Array<Int> {
     let first_remainder = durationMS - (hrs * 3.6e+6)
     let mins = floor(first_remainder / 60000)
     let second_remainder = first_remainder - (mins * 60000)
-    print("second remainder: \(second_remainder), mins: \(mins)")
+//    print("second remainder: \(second_remainder), mins: \(mins)")
     let secs = floor(second_remainder / 1000)
     let third_remainder = second_remainder - (secs * 1000)
     let ms = Int(third_remainder / 1000)
     
-    print(Int(hrs), Int(mins), Int(secs), ms)
+//    print(Int(hrs), Int(mins), Int(secs), ms)
 
     return [Int(hrs), Int(mins), Int(secs), ms]
 }
@@ -58,7 +58,7 @@ func formatFullTimeString(durationMS: Double) -> String {
     let formattedTime = convertMStoTime(durationMS: durationMS)
     let longString = String(format: "%02d:%02d:%02d:%02d", formattedTime[0], formattedTime[1], formattedTime[2], formattedTime[3])
     
-    print(longString)
+//    print(longString)
     
     return longString
 }

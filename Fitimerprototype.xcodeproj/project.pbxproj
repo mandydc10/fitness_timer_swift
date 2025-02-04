@@ -30,10 +30,12 @@
 		8882B1B32D4F230C00A87781 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1B22D4F230C00A87781 /* SettingsView.swift */; };
 		8882B1B52D4F23C600A87781 /* RevenueCatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1B42D4F23C600A87781 /* RevenueCatView.swift */; };
 		8882B1B72D4F2BE000A87781 /* AddWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1B62D4F2BE000A87781 /* AddWorkoutView.swift */; };
-		8882B1B92D4F4CA500A87781 /* demoRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1B82D4F4CA500A87781 /* demoRootView.swift */; };
 		8882B1BB2D4F4EAD00A87781 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1BA2D4F4EAD00A87781 /* TabBarButton.swift */; };
 		8882B1BD2D4F7CE400A87781 /* QuickTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1BC2D4F7CE400A87781 /* QuickTimerView.swift */; };
 		8882B1BF2D4F8EE300A87781 /* AddQuickTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1BE2D4F8EE300A87781 /* AddQuickTimerView.swift */; };
+		8882B1C12D51B8F200A87781 /* WorkoutTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1C02D51B8F200A87781 /* WorkoutTimer.swift */; };
+		8882B1C32D51BCD200A87781 /* TimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1C22D51BCD200A87781 /* TimerFunctions.swift */; };
+		8882B1CC2D5207BF00A87781 /* WorkoutTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8882B1CB2D5207BF00A87781 /* WorkoutTimerViewModel.swift */; };
 		889521852D4787D600134C48 /* ExerciseLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889521842D4787D600134C48 /* ExerciseLibraryView.swift */; };
 		889521872D489C4100134C48 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889521862D489C4100134C48 /* TimerView.swift */; };
 		88B87EDC2D4BC94300C84D43 /* Timer-ViewModelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B87EDB2D4BC94300C84D43 /* Timer-ViewModelExt.swift */; };
@@ -63,10 +65,12 @@
 		8882B1B22D4F230C00A87781 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8882B1B42D4F23C600A87781 /* RevenueCatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatView.swift; sourceTree = "<group>"; };
 		8882B1B62D4F2BE000A87781 /* AddWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutView.swift; sourceTree = "<group>"; };
-		8882B1B82D4F4CA500A87781 /* demoRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoRootView.swift; sourceTree = "<group>"; };
 		8882B1BA2D4F4EAD00A87781 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		8882B1BC2D4F7CE400A87781 /* QuickTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerView.swift; sourceTree = "<group>"; };
 		8882B1BE2D4F8EE300A87781 /* AddQuickTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuickTimerView.swift; sourceTree = "<group>"; };
+		8882B1C02D51B8F200A87781 /* WorkoutTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimer.swift; sourceTree = "<group>"; };
+		8882B1C22D51BCD200A87781 /* TimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFunctions.swift; sourceTree = "<group>"; };
+		8882B1CB2D5207BF00A87781 /* WorkoutTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimerViewModel.swift; sourceTree = "<group>"; };
 		889521842D4787D600134C48 /* ExerciseLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLibraryView.swift; sourceTree = "<group>"; };
 		889521862D489C4100134C48 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		88B87EDB2D4BC94300C84D43 /* Timer-ViewModelExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer-ViewModelExt.swift"; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				882DE9882D48B399001A6E5C /* TimeFormatting.swift */,
+				8882B1C22D51BCD200A87781 /* TimerFunctions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -137,6 +142,33 @@
 				8882B1BA2D4F4EAD00A87781 /* TabBarButton.swift */,
 			);
 			path = "Custom Tab Bar";
+			sourceTree = "<group>";
+		};
+		8882B1C82D51CDBF00A87781 /* QuickTimer */ = {
+			isa = PBXGroup;
+			children = (
+				8882B1BC2D4F7CE400A87781 /* QuickTimerView.swift */,
+				8882B1BE2D4F8EE300A87781 /* AddQuickTimerView.swift */,
+			);
+			path = QuickTimer;
+			sourceTree = "<group>";
+		};
+		8882B1C92D51CDD600A87781 /* WorkoutList */ = {
+			isa = PBXGroup;
+			children = (
+				8882B1B02D4F20EB00A87781 /* WorkoutListView.swift */,
+				8882B1B62D4F2BE000A87781 /* AddWorkoutView.swift */,
+			);
+			path = WorkoutList;
+			sourceTree = "<group>";
+		};
+		8882B1CA2D51CEDA00A87781 /* WorkoutDetail */ = {
+			isa = PBXGroup;
+			children = (
+				882DE98C2D4A2AFF001A6E5C /* WorkoutDetailView.swift */,
+				882DE99E2D4A6C99001A6E5C /* EditWorkoutNameView.swift */,
+			);
+			path = WorkoutDetail;
 			sourceTree = "<group>";
 		};
 		889521812D47874100134C48 /* Resources */ = {
@@ -152,20 +184,17 @@
 			children = (
 				8882B1AD2D4E2BF100A87781 /* Custom Tab Bar */,
 				88294F182D06EA9900DED23F /* HomeView.swift */,
-				8882B1B02D4F20EB00A87781 /* WorkoutListView.swift */,
-				8882B1B62D4F2BE000A87781 /* AddWorkoutView.swift */,
+				889521862D489C4100134C48 /* TimerView.swift */,
+				8882B1C82D51CDBF00A87781 /* QuickTimer */,
+				8882B1C92D51CDD600A87781 /* WorkoutList */,
 				889521842D4787D600134C48 /* ExerciseLibraryView.swift */,
-				882DE98C2D4A2AFF001A6E5C /* WorkoutDetailView.swift */,
-				882DE99E2D4A6C99001A6E5C /* EditWorkoutNameView.swift */,
+				8882B1CA2D51CEDA00A87781 /* WorkoutDetail */,
 				882DE9852D48B1DD001A6E5C /* AddExerciseView.swift */,
 				882DE98A2D4A1D73001A6E5C /* EditExerciseView.swift */,
-				8882B1BC2D4F7CE400A87781 /* QuickTimerView.swift */,
-				8882B1BE2D4F8EE300A87781 /* AddQuickTimerView.swift */,
-				889521862D489C4100134C48 /* TimerView.swift */,
-				88B87EDB2D4BC94300C84D43 /* Timer-ViewModelExt.swift */,
 				8882B1B42D4F23C600A87781 /* RevenueCatView.swift */,
 				8882B1B22D4F230C00A87781 /* SettingsView.swift */,
-				8882B1B82D4F4CA500A87781 /* demoRootView.swift */,
+				88B87EDB2D4BC94300C84D43 /* Timer-ViewModelExt.swift */,
+				8882B1CB2D5207BF00A87781 /* WorkoutTimerViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +209,7 @@
 				882DE97E2D48A24B001A6E5C /* ExerciseWorkoutModel.xcdatamodeld */,
 				882DE9812D48ADA9001A6E5C /* PersistenceController.swift */,
 				881C74E32D4DED1F00318D2F /* DataController.swift */,
+				8882B1C02D51B8F200A87781 /* WorkoutTimer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,8 +296,8 @@
 				8882B1AC2D4E140300A87781 /* Exercise+CoreDataProperties.swift in Sources */,
 				8882B1B52D4F23C600A87781 /* RevenueCatView.swift in Sources */,
 				8882B1BF2D4F8EE300A87781 /* AddQuickTimerView.swift in Sources */,
-				8882B1B92D4F4CA500A87781 /* demoRootView.swift in Sources */,
 				8882B1BB2D4F4EAD00A87781 /* TabBarButton.swift in Sources */,
+				8882B1CC2D5207BF00A87781 /* WorkoutTimerViewModel.swift in Sources */,
 				882DE98D2D4A2AFF001A6E5C /* WorkoutDetailView.swift in Sources */,
 				8882B1AF2D4E2C0B00A87781 /* CustomTabBar.swift in Sources */,
 				8882B1B32D4F230C00A87781 /* SettingsView.swift in Sources */,
@@ -276,6 +306,7 @@
 				882DE9892D48B399001A6E5C /* TimeFormatting.swift in Sources */,
 				889521852D4787D600134C48 /* ExerciseLibraryView.swift in Sources */,
 				8882B1AA2D4E140300A87781 /* Workout+CoreDataProperties.swift in Sources */,
+				8882B1C12D51B8F200A87781 /* WorkoutTimer.swift in Sources */,
 				8882B1B12D4F20EB00A87781 /* WorkoutListView.swift in Sources */,
 				8882B1BD2D4F7CE400A87781 /* QuickTimerView.swift in Sources */,
 				882DE9932D4A45DF001A6E5C /* ExerciseWorkoutModel.xcdatamodeld in Sources */,
@@ -285,6 +316,7 @@
 				881C74E42D4DED1F00318D2F /* DataController.swift in Sources */,
 				882DE99F2D4A6C99001A6E5C /* EditWorkoutNameView.swift in Sources */,
 				882DE9862D48B1DD001A6E5C /* AddExerciseView.swift in Sources */,
+				8882B1C32D51BCD200A87781 /* TimerFunctions.swift in Sources */,
 				882DE9822D48ADA9001A6E5C /* PersistenceController.swift in Sources */,
 				88294F172D06EA9900DED23F /* FitimerprototypeApp.swift in Sources */,
 			);

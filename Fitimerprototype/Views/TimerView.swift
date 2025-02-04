@@ -8,49 +8,24 @@
 import SwiftUI
 
 struct TimerView: View {
+    // TODO: Get this working with new WorkoutTimer class
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var workoutTimer: WorkoutTimer
+    
     var workout: FetchedResults<Workout>.Element?
     
-//    @StateObject private var exerciseArray: Array<Exercise> = []
+//    @Binding var currentExerciseIndex: Int? = workoutTimer.currentExerciseIndex
     
-    @StateObject private var vm = ViewModel()
+//    @State private var exerciseArray: [Exercise] = (workout?.exerciseArray ?? <#default value#>)
     
-    private let timer = Timer.publish(every: 0.001, on: .main, in: .common)
-    private let width: Double = 250
-    
-//    let workoutTitle = workout.wrappedWorkoutName
-    let exerciseTitle = "Sit ups"
-    let exerciseDuration = 195000
-//        Create timer - add .autoconnect() to make it autostart
-//    let timer = Timer.publish(every: 0.001, on: .main, in: .common)
-    
-//        To use date parameter
-//        @State var currentDate: Date = Date()
-    
-    @State var count: Int = 0
-    @State var finishedText: String? = nil
-    @State var timeRemaining: String = "00:00:00"
-    
-    func updateTimeRemaining() {
-        if count <= 1 {
-            finishedText = "Workout complete!"
-        } else {
-            count += 1
-        }
-            
-//        let remainingExerciseTime = exerciseDuration - count
-        let hour = 00
-        let minute = 03
-        let second = 15
-        
-        timeRemaining = "\(hour):\(minute):\(second)"
-//
-    }
+//    @StateObject private var vm = ViewModel()
+//    @State var finishedText: String? = nil
+
     
     var body: some View {
-        
+    
         NavigationStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 25.0)
@@ -64,14 +39,16 @@ struct TimerView: View {
 //                        .bold()
                     HStack {
                         VStack{
-                            Text("00:00:00")
+                            Text("\(formatMinSecHrString(durationMS: workoutTimer.totalRemainingMS))")
+//                            Text("00:00:00")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text("Remaining")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         
                         VStack{
-                            Text("00:00:00")
+                             Text("\(formatMinSecHrString(durationMS: (workoutTimer.totalDurationMS - workoutTimer.totalRemainingMS)))")
+//                            Text("00:00:00")
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                             Text("Elapsed")
                                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -81,66 +58,99 @@ struct TimerView: View {
                     .padding(EdgeInsets(top: 1, leading: 20, bottom: 10, trailing: 20))
                     
                     Spacer()
+                    
                     Text("EXERCISE VIDEO GOES HERE")
                         .foregroundColor(.white)
                         .italic()
+                    
                     Spacer()
-                    Text(workout?.exerciseArray[0].wrappedName ?? vm.exerciseName)
+                    
+                    Text("No exercise set")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
+                    
                     Spacer()
+                    
                     HStack {
                         Button {
-                            //add action function
+                            // TODO: add "skip to previous exercise" action function
                         } label: {
                             Image(systemName: "chevron.backward")
                                 .font(.system(size: 40, weight: .medium, design: .rounded))
                         }
+                        
                         Spacer()
-//                        Text("00:00:00")
-//                            .font(.largeTitle)
-//                        Text("\(vm.time)")
-                        Text("\(formatMinSecString(durationMS: (workout?.exerciseArray[0].duration)!))")
-                            .font(.system(size: 90, weight: .medium, design: .rounded))
-                            .padding()
-                            .alert("Timer done!", isPresented: $vm.showingAlert) {
-                                Button("Continue", role: .cancel) {
-                                    // code
-                                }
-                            }
+                        
+                        ZStack {
+                            Circle()
+                                .stroke(lineWidth: 15)
+                                .opacity(0.3)
+                            Circle()
+//                    Set up the progress circle to match the set time (use a durationMS? function)
+                                .trim(from:0, to: CGFloat(1 - (workoutTimer.totalRemainingMS / workoutTimer.totalDurationMS )))
+                                .stroke(style: StrokeStyle(lineWidth: 15, lineJoin: .round))
+                                .rotationEffect(.degrees(-90))
+                            Text("\(String(format: "%02d:%02d", workoutTimer.workoutRemainingMinsAsInt, workoutTimer.workoutRemainingSecsAsInt))")
+                                .font(.system(size: 55, weight: .medium, design: .rounded))
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: 250)
+//                        Text("\(formatMinSecString(durationMS: (workout?.exerciseArray[0].duration)!))")
+//                            .font(.system(size: 90, weight: .medium, design: .rounded))
+//                            .padding()
+//                            .alert("Timer done!", isPresented: $vm.showingAlert) {
+//                                Button("Continue", role: .cancel) {
+//                                    // code
+//                                }
+//                            }
+                        
                         Spacer()
+                        
                         Button {
-                            //add action function
+                            // TODO: add "skip to next exercise" action function
                         } label: {
                             Image(systemName: "chevron.forward")
                                 .font(.system(size: 40, weight: .medium, design: .rounded))
                         }
                     }
                     Spacer()
+                    
                     HStack() {
+                        // Reset timer back to initial exercise duration
                         Button {
-                            vm.reset()
+                            workoutTimer.isRunning = false
+                            workoutTimer.resetTimer()
                         } label: {
                             Image(systemName: "arrow.counterclockwise")
                         }
                         .font(.system(size: 30, weight: .medium, design: .rounded))
-                        .tint(.red)
+                        
                         Spacer()
+                        
+                        // Start timer button
                         Button {
-                            vm.start(minutes: vm.minutes)
+                            //                            vm.start(minutes: vm.minutes)
+                            if !workoutTimer.isRunning {
+                                workoutTimer.isRunning = true
+                                workoutTimer.startTimer()
+                            }
                         } label: {
                             Image(systemName: "play.fill")
                                 .font(.system(size: 60, weight: .medium, design: .rounded))
                         }
-                        .disabled(vm.isActive)
                         Spacer()
+                        
+                        // Pause timer button
                         Button {
-                            vm.reset()
+                            if workoutTimer.isRunning {
+                                workoutTimer.isRunning = false
+                                workoutTimer.pauseTimer()
+                            }
+                            
                         } label: {
                             Image(systemName: "pause.fill")
                         }
                         .font(.system(size: 30, weight: .medium, design: .rounded))
-                        .tint(.red)
                     }
                     .padding()
                     
@@ -149,11 +159,7 @@ struct TimerView: View {
             }
         }
         .foregroundColor(Color(hue: 0.118, saturation: 0.978, brightness: 0.966, opacity: 3.0))
-        .onReceive(timer) { _ in
-            vm.updateCountdown()
-//            updateTimeRemaining()
-        }
-        .navigationTitle((workout?.wrappedWorkoutName ?? vm.workoutName)!)
+        .navigationTitle((workout?.wrappedWorkoutName ?? "unknown workout")!)
     }
 
 }
@@ -164,7 +170,7 @@ struct TimerView_Previews: PreviewProvider {
         let newWorkout = Workout(context: viewContext)
         newWorkout.workout_name = "Upper Body"
         newWorkout.workout_id = UUID()
-        newWorkout.total_duration = 0
+        newWorkout.total_duration = 60000
         
         let newExercise1 = Exercise(context: viewContext)
         newExercise1.name = "Pull ups"
@@ -173,12 +179,11 @@ struct TimerView_Previews: PreviewProvider {
         
         newWorkout.addToExercises(newExercise1)
         
-//        ForEach(newWorkout.exerciseArray) { exercise in
-//            newWorkout.total_duration = exercise.duration
-//        }
+//        let currentExerciseIndex = 0
 
         return TimerView(workout: newWorkout)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(WorkoutTimer())
     }
 }
 
